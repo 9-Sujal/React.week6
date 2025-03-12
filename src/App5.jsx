@@ -1,0 +1,66 @@
+import { useContext, useState } from "react";
+import { CountContext } from "./context";
+
+function App5(){
+     const [count, setCount] = useState(0);
+    return(
+        <>
+        <div>
+            <CountContext.Provider value={count}>
+
+            <Count count={count} setCount={setCount}/>
+            </CountContext.Provider>
+            
+        </div>
+        
+        
+        </>
+    )
+}
+
+// eslint-disable-next-line react/prop-types
+function Count({setCount}){
+    return <>
+    <div>
+        <CountRenderer />
+        <Buttons setCount={setCount}/>
+    </div>
+    </>
+}
+
+function CountRenderer(){
+  const count = useContext(CountContext);
+    return<>
+     <div>
+        {count}
+     </div>
+    </>
+}
+
+// eslint-disable-next-line react/prop-types
+function Buttons({setCount}){
+    const count = useContext(CountContext);
+ return<div>
+
+    <button onClick={()=>{
+        setCount(count+1)
+    }}>
+        increase
+    </button>
+  
+
+  
+
+  <button onClick={()=>{
+        setCount(count-1)
+    }}>
+        decrease
+    </button>
+
+ </div>
+}
+
+
+
+
+export default App5; 
